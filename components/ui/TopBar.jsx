@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Menu, Bell, Search } from "lucide-react";
 import NotificationButton from "@/components/ui/NotificationButton";
 import Avatar from "@/components/ui/Avatar";
