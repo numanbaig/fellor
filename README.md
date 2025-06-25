@@ -10,7 +10,7 @@ Technology Stack
 - **Icons**: Lucide React
 - **Fonts**: Geist (Google Fonts)
 
-## 📋 Prerequisites
+Prerequisites
 
 Before running this project, make sure you have the following installed:
 
@@ -22,7 +22,7 @@ Getting Started
 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/numanbaig/fellor.git
 cd fellor
 ```
 
