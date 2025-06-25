@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/Input";
-import { Button } from "../ui/Button";
+// import { Button } from "../ui/Button";
 import { Menu, Bell, Search } from "lucide-react";
 import NotificationButton from "@/components/ui/NotificationButton";
 import Avatar from "@/components/ui/Avatar";
@@ -43,12 +43,17 @@ export default function TopBar({ onToggleSidebar }) {
         </button>
         <NotificationButton Icon={Bell} />
         <Avatar name={userData.avatar} />
-        <Button
+        {/* <Button
           variant="outline"
           className="h-10 px-4 text-white bg-[#000000d4] cursor-pointer"
         >
           Quick Actions
-        </Button>
+        </Button> */}
+        <button
+          className="h-10 px-4 text-white bg-[#000000d4] cursor-pointer rounded-md"
+        >
+          Quick Actions
+        </button>
       </div>
     </div>
   );
