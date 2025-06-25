@@ -1,23 +1,31 @@
-import Image from "next/image";
-import { Card, CardHeader, CardContent } from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/button";
+'use client'
+import React, { useState } from "react";
 import { ChartCard } from "@/components/ui/ChartCard";
 import { UpcomingListCard } from "@/components/ui/UpcomingListCard";
-import TopBar from "@/components/ui/TopBar";
 import StatCard from "@/components/ui/StatCard";
 import { statCardsData, upcomingInterviewsData, hiringInsightsChartData, topActiveJobsData, todoListData } from "@/lib/data";
 import TopActiveJobs from "@/components/ui/TopActiveJobs";
 import TodoList from "@/components/ui/TodoList";
 
+const timeRangeOptions = [
+  "Last 7 days",
+  "Last 14 days",
+  "Last 30 days",
+  "This year"
+];
+
 export default function Home() {
+  const [timeRange, setTimeRange] = useState("Last 30 days");
+
+  // For demo, always use the same data. In a real app, filter chart data based on timeRange.
+  const chartData = hiringInsightsChartData.chartData;
+
   return (
-    <div className="flex flex-col gap-8 pt-4 px-8">
-      <TopBar />
+    <div className="flex flex-col gap-8 pt-4 px-8 pb-8">
       {/* Cards Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCardsData.map((card, idx) => (
-          <StatCard key={card.title} {...card} />
+          <StatCard key={card.title} {...card} icon={card?.icon ? card.icon : null}/>
         ))}
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-2">
@@ -25,10 +33,10 @@ export default function Home() {
         <div className="lg:col-span-2">
           <ChartCard
             title={hiringInsightsChartData.title}
-            action={
-              <button className="text-xs text-muted-foreground border rounded px-2 py-1">{hiringInsightsChartData.timeRange}</button>
-            }
-            chartData={hiringInsightsChartData.chartData}
+            timeRange={timeRange}
+            timeRangeOptions={timeRangeOptions}
+            onTimeRangeChange={setTimeRange}
+            chartData={chartData}
           />
           <div className="mt-6">
             <TopActiveJobs jobs={topActiveJobsData} />

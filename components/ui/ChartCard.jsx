@@ -15,16 +15,26 @@ const ChartComponent = dynamic(() => import("./ChartComponent"), {
   ),
 });
 
-export function ChartCard({ title, action, children, className, chartData }) {
+export function ChartCard({ title, action, children, className, chartData, timeRange, timeRangeOptions = [], onTimeRangeChange }) {
   return (
     <Card className={cn("w-full", className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <span className="text-base font-semibold">{title}</span>
-        {action && <div>{action}</div>}
+        <div>
+          <select
+            className="text-xs text-muted-foreground border rounded px-2 py-1 bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+            value={timeRange}
+            onChange={e => onTimeRangeChange && onTimeRangeChange(e.target.value)}
+          >
+            {timeRangeOptions.map(option => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
       </CardHeader>
       <CardContent className="pt-0">
         {children || <ChartComponent chartData={chartData} />}
       </CardContent>
     </Card>
   );
-}
+} 
